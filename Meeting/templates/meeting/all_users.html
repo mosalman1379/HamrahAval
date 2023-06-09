@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All users</title>
+    <style>
+        table, td, th {
+            border: 2px solid red;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<p style="text-align: center;">All users</p>
+<form method="post">
+    {% if users %}
+        <table>
+            <tr>
+                <th>No</th>
+                <th>first_name</th>
+                <th>last_name</th>
+                <th>is manager</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td><input type="checkbox" name="{{ user.id }}"></td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% csrf_token %}
+        <p style="text-align: center;"><input style="background-color: aqua" type="submit" value="Submit"></p>
+    {% else %}
+        <p style="text-align: center">No user exist to promote it</p>
+    {% endif %}
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create meeting</title>
+</head>
+<body>
+<form method="post">
+    {{ form.as_p }}
+    <p>اتاق مدنظر خود را انتخاب کنید</p>
+    {% for room in rooms %}
+        <p><label>
+            {{ room.title }}
+            <input type="radio" name="room" value="{{ room.id }}">
+        </label></p>
+    {% endfor %}
+    {% csrf_token %}
+    <p><input type="submit" value="Submit"></p>
+</form>
+</body>
+</html>
